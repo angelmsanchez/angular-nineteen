@@ -1,0 +1,19 @@
+<header class="app-header">
+  <app-header (setOpenMenu)="setOpenMenu()"></app-header>
+</header>
+
+<main class="app-main">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened class="sidenav">
+      <nav>
+        <ul>
+          <li><a routerLink="/" routerLinkActive="active">Example</a></li>
+          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        </ul>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</main>

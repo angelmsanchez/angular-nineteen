@@ -1,0 +1,134 @@
+/* stylelint-disable declaration-no-important */
+@use './colors';
+@use './devices';
+
+::ng-deep mat-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background: colors.$color-primary;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+  max-height: 4.688rem;
+
+  .mat-mdc-form-field-label {
+    font-size: 1rem;
+  }
+}
+
+.custom-input {
+  height: 4.063rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 16.875rem;
+  margin: 0.313rem 0.938rem 0.313rem 0.313rem;
+
+  @media (min-width: devices.$screen-l) {
+    width: 18.75rem;
+    margin-right: 1.25rem;
+  }
+
+  @media (min-width: devices.$screen-lg) {
+    width: 20.313rem;
+    margin-right: 1.563rem;
+  }
+
+  .mat-mdc-form-field-appearance-legacy .mat-mdc-form-field-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
+  .mat-chip.mat-standard-chip {
+    background-color: #ffb3b3;
+    min-height: 1.563rem;
+  }
+
+  .mat-mdc-form-field-flex {
+    height: 100%;
+  }
+
+  .mat-mdc-form-field-appearance-legacy .mat-mdc-form-field-infix {
+    height: 3.125rem;
+  }
+
+  .mat-select {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mat-input-element {
+    height: 100%;
+  }
+
+  .mat-focused .mat-mdc-form-field-required-marker {
+    color: colors.$color-primary;
+  }
+
+  &__error {
+    label,
+    .mat-input-element,
+    .mat-mdc-form-field-suffix,
+    .mat-mdc-form-field-label {
+      color: colors.$color-primary !important;
+    }
+
+    .mat-mdc-form-field-underline {
+      background: colors.$color-primary !important;
+    }
+  }
+
+  .mat-error {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    color: colors.$color-red;
+    opacity: 1;
+    transform: translateY(0%);
+    font-size: 75%;
+    margin-top: 1rem;
+  }
+
+  .mat-mdc-form-field.mat-mdc-form-field-invalid .mat-mdc-form-field-ripple {
+    background-color: colors.$color-red;
+  }
+
+  .mat-mdc-form-field.mat-mdc-form-field-invalid
+    .mat-mdc-form-field-label
+    .mat-mdc-form-field-required-marker {
+    color: colors.$color-red;
+  }
+
+  .mat-mdc-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+    color: colors.$color-red;
+  }
+
+  .mat-mdc-form-field.mat-mdc-form-field-invalid .mat-mdc-form-field-label {
+    color: colors.$color-red;
+  }
+}
+
+.mat-chip.mat-standard-chip {
+  background-color: #ffb3b3 !important;
+  min-height: 1.563rem;
+}
+
+.table-wrapper {
+  .mat-error {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+}
+
+.mat-expansion-panel-header {
+  height: 2.5rem !important;
+
+  .mat-expanded {
+    height: 2.813rem !important;
+  }
+}
+
+.mat-select-panel {
+  border: 0.063rem solid lightgray;
+  min-width: 7.125rem !important;
+}

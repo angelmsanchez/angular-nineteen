@@ -1,0 +1,12 @@
+@use './forms';
+@use './theme';
+
+body {
+  font-family: Gotham, sans-serif;
+
+  --ion-font-family: 'Gotham', sans-serif;
+
+  font-size: 1rem;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+}

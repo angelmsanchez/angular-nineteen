@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./example-index.component.scss']
 })
 export class ExampleIndexComponent {
-  title = 'Tokiota-Standard-Front-Angular';
+  title = 'Angular 19 features';
 }

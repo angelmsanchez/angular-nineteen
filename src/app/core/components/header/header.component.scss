@@ -1,0 +1,30 @@
+@use 'src/styles/devices.scss';
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 0.313rem;
+  border-bottom: 0.063rem solid lightgray;
+  height: 4.375rem;
+
+  @media (min-width: devices.$screen-md) {
+    padding: 0 1.875rem;
+  }
+
+  span,
+  img {
+    margin-left: 1.563rem;
+    margin-right: auto;
+  }
+
+  &__button {
+    margin-left: 0.5rem;
+    width: 4.375rem;
+
+    @media (min-width: devices.$screen-md) {
+      margin-left: 1rem;
+    }
+  }
+}
