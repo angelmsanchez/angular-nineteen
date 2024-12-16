@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { InputComponent } from 'src/app/shared/components';
 // import {
 //   RadioOptionInterface,
 //   SelectOptionInterface
@@ -9,10 +11,10 @@ import { FormBuilder } from '@angular/forms';
   selector: 'app-home-index',
   templateUrl: './home-index.component.html',
   styleUrls: ['./home-index.component.scss'],
-  imports: []
+  imports: [ReactiveFormsModule, InputComponent, CommonModule]
 })
 export class HomeIndexComponent implements OnInit {
-  // form: FormGroup;
+  form: FormGroup = new FormGroup({});
   // languages: SelectOptionInterface[] = [
   //   {
   //     id: '1',
@@ -41,14 +43,14 @@ export class HomeIndexComponent implements OnInit {
   }
 
   private initForm(): void {
-    //   this.form = this.formBuilder.group({
-    //     age: [undefined],
-    //     date: [''],
-    //     fileUploader: [''],
-    //     gender: [undefined],
-    //     language: [''],
-    //     name: [''],
-    //     toggle: [true]
-    //   });
+      this.form = this.formBuilder.group({
+        age: [undefined],
+        date: [''],
+        fileUploader: [''],
+        gender: [undefined],
+        language: [''],
+        name: [''],
+        toggle: [true]
+      });
   }
 }

@@ -1,0 +1,38 @@
+<section class="custom-input" [ngClass]="{ textarea: textarea }">
+  <mat-form-field
+    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+  >
+    <mat-label>{{ label }}</mat-label>
+    <!-- <mat-label>{{ label | translate }}</mat-label> -->
+    <input
+      *ngIf="!textarea"
+      matInput
+      [formControl]="formControl"
+      (input)="onInput()"
+      [required]="required"
+    />
+
+    <textarea
+      *ngIf="textarea"
+      matInput
+      [formControl]="formControl"
+      (input)="onInput()"
+      [required]="required"
+      matTextareaAutosize
+      cdkAutosizeMinRows="textareaRows"
+      cdkAutosizeMaxRows="textareaRows"
+    >
+    </textarea>
+
+    <div
+      class="mat-error"
+      *ngIf="
+        !formControl.untouched &&
+        form.get(formControlName)?.errors?.['required']
+      "
+    >
+      {{ 'shared.requiredField' }}
+      <!-- {{ 'shared.requiredField' | translate }} -->
+    </div>
+  </mat-form-field>
+</section>
