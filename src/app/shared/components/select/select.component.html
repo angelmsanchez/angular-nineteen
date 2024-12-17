@@ -1,0 +1,47 @@
+<section class="custom-input select-input">
+  <mat-form-field
+    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+  >
+    <mat-label>{{ label }}</mat-label>
+    <!-- <mat-label>{{ label | translate }}</mat-label> -->
+    <mat-select
+      [multiple]="multiple"
+      [formControl]="formControl"
+      [compareWith]="compareWithFn"
+      (selectionChange)="onInput()"
+      [required]="required"
+    >
+      <mat-select-trigger>
+        <div class="unique-value">
+          <!-- <span *ngIf="formControl.value">{{
+            formControl.value.name | translate
+          }}</span> -->
+          <span *ngIf="formControl.value">{{ formControl.value.name }}</span>
+        </div>
+      </mat-select-trigger>
+
+      <mat-option
+        *ngFor="let value of values; trackBy: trackByFunction.bind(this)"
+        [value]="value"
+      >
+        <div [ngSwitch]="dataFormat">
+          <span *ngSwitchCase="'asString'">
+            <span *ngIf="translate">{{ value.name }}</span>
+            <!-- <span *ngIf="translate">{{ value.name | translate }}</span> -->
+            <span *ngIf="!translate">{{ value.name }}</span>
+          </span>
+        </div>
+      </mat-option>
+    </mat-select>
+    <div
+      class="mat-error"
+      *ngIf="
+        !formControl.untouched &&
+        form?.get(formControlName)?.errors?.['required']
+      "
+    >
+      {{ 'shared.requiredField' }}
+      <!-- {{ 'shared.requiredField' | translate }} -->
+    </div>
+  </mat-form-field>
+</section>

@@ -1,0 +1,37 @@
+<section class="custom-input">
+  <mat-form-field
+    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+    (click)="upload()"
+  >
+    <mat-label>{{ label }}</mat-label>
+    <!-- <mat-label>{{ label | translate }}</mat-label> -->
+    <input
+      type="file"
+      id="fileUpload"
+      name="fileUpload"
+      multiple="multiple"
+      accept="{{ accept }}"
+      [formControl]="formControl"
+      [required]="required"
+      style="display: none"
+    />
+    <mat-icon>file_upload</mat-icon>
+    <input matInput style="display: none" />
+    <div
+      class="mat-error"
+      *ngIf="
+        !formControl.untouched &&
+        form?.get(formControlName)?.errors?.['required']
+      "
+    >
+      {{ 'shared.requiredField' }}
+      <!-- {{ 'shared.requiredField' | translate }} -->
+    </div>
+  </mat-form-field>
+  <ul>
+    <li *ngFor="let file of files" [@fadeInOut]="file.state">
+      <span>{{ file.data.name }}</span>
+      <mat-icon (click)="cancelFile(file)">cancel</mat-icon>
+    </li>
+  </ul>
+</section>

@@ -3,26 +3,31 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { InputComponent } from 'src/app/shared/components';
+import { StoreModule } from '@ngrx/store';
+import { DatepickerComponent } from 'src/app/shared/components';
+import { reducers } from 'src/app/store/reducers';
+import { DateAdapter } from '@angular/material/core';
 
-describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+describe('DatepickerComponent', () => {
+  let component: DatepickerComponent;
+  let fixture: ComponentFixture<DatepickerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        StoreModule.forRoot(reducers)
       ],
-      declarations: [InputComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      declarations: [DatepickerComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [DateAdapter]
     });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
+    fixture = TestBed.createComponent(DatepickerComponent);
     component = fixture.componentInstance;
   });
 

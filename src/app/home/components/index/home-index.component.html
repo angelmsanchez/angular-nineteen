@@ -7,29 +7,26 @@
       formControlName="name"
       [required]="true"
     />
-    <!-- <app-input-number
+    <app-input-number
       [form]="form"
       label="Edad"
       formControlName="age"
       [required]="true"
-    >
-    </app-input-number>
+    />
     <app-select
       [form]="form"
       label="Idioma"
       formControlName="language"
       [values]="languages"
       [required]="true"
-    >
-    </app-select>
+    />
     <app-datepicker
       [form]="form"
       label="Fecha"
       formControlName="date"
       [required]="true"
-    >
-    </app-datepicker>
-    <app-file-uploader
+    />
+    <!--  <app-file-uploader
       [form]="form"
       label="Subir archivo"
       formControlName="fileUploader"
@@ -45,8 +42,8 @@
       formControlName="gender"
       [options]="optionsRadioGroup"
       [required]="true"
-    ></app-radio-button>
-    <br /> -->
+    ></app-radio-button> -->
+    <br />
     {{ form.value | json }}
   </form>
 </section>

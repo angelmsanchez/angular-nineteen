@@ -3,11 +3,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { InputComponent } from 'src/app/shared/components';
+import { InputNumberComponent } from 'src/app/shared/components';
 
-describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+describe('InputNumberComponent', () => {
+  let component: InputNumberComponent;
+  let fixture: ComponentFixture<InputNumberComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -16,13 +16,13 @@ describe('InputComponent', () => {
         HttpClientTestingModule,
         TranslateModule.forRoot()
       ],
-      declarations: [InputComponent],
+      declarations: [InputNumberComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
+    fixture = TestBed.createComponent(InputNumberComponent);
     component = fixture.componentInstance;
   });
 

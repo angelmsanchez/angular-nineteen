@@ -1,0 +1,40 @@
+<section class="custom-input">
+  <mat-form-field
+    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+  >
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <!-- <mat-label *ngIf="label">{{ label | translate }}</mat-label> -->
+    <input
+      matInput
+      type="number"
+      [formControl]="formControl"
+      (input)="onInput()"
+      [required]="required"
+      [min]="min"
+      [max]="max"
+    />
+    <span matSuffix *ngIf="percentage">%</span>
+    <span matSuffix *ngIf="currency">{{ currency }}</span>
+    <div
+      class="mat-error"
+      *ngIf="
+        !formControl.untouched &&
+        form?.get(formControlName)?.errors?.['required']
+      "
+    >
+      {{ 'shared.requiredField' }}
+      <!-- {{ 'shared.requiredField' | translate }} -->
+    </div>
+    <div
+      class="mat-error"
+      *ngIf="!!form?.get(formControlName)?.errors?.['min']"
+    >
+      {{ 'shared.minValue' }}
+      <!-- {{ 'shared.minValue' | translate: { value: min } }} -->
+    </div>
+    <div class="mat-error" *ngIf="form?.get(formControlName)?.errors?.['max']">
+      {{ 'shared.maxValue' }}
+      <!-- {{ 'shared.maxValue' | translate: { value: max } }} -->
+    </div>
+  </mat-form-field>
+</section>

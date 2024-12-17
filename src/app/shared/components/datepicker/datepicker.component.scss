@@ -1,0 +1,31 @@
+.datepicker {
+  ::ng-deep mat-datepicker-toggle {
+    .mat-button-wrapper {
+      font-size: 1.5rem;
+    }
+  }
+
+  ::ng-deep mat-form-field {
+    .mat-mdc-form-field-infix {
+      display: flex;
+      padding: 0;
+
+      .datepicker-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &.has-time {
+          width: 50%;
+        }
+      }
+
+      > div {
+        &.mat-error {
+          top: 1.875rem;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@use 'src/styles/colors.scss';
+
+.mat-error {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  color: colors.$color-red;
+  opacity: 1;
+  transform: translateY(0%);
+  font-size: 75%;
+  margin-top: 1rem;
+}

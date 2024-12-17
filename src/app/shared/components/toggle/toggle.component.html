@@ -1,0 +1,10 @@
+<section class="custom-input">
+  <mat-slide-toggle
+    [formControl]="formControl"
+    color="primary"
+    (change)="onInput()"
+  >
+    {{ label }}
+    <!-- {{ label | translate }} -->
+  </mat-slide-toggle>
+</section>
