@@ -8,8 +8,7 @@ import {
   FormGroup,
   ReactiveFormsModule
 } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-toggle',
@@ -23,8 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     }
   ],
   imports: [
-    MatInputModule,
-    MatFormFieldModule,
+    MatSlideToggle,
     ReactiveFormsModule,
     CommonModule
   ]

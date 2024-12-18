@@ -5,13 +5,12 @@
       'custom-input__error': form.get(formControlName)?.errors
     }"
   >
-    <label *ngIf="label"
-      >{{ label }}&nbsp;<span *ngIf="required">*</span></label
+    <mat-label *ngIf="label"
+      >{{ label }}&nbsp;<span *ngIf="required">*</span></mat-label
     >
     <!-- <label *ngIf="label"
     >{{ label | translate }}&nbsp;<span *ngIf="required">*</span></label
   > -->
-
     <mat-radio-group [formControl]="formControl" (change)="onInput()">
       <mat-radio-button
         *ngFor="let option of options"

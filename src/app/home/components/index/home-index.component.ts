@@ -25,10 +25,10 @@ import {
     InputComponent,
     InputNumberComponent,
     SelectComponent,
-    DatepickerComponent,
-    // ToggleComponent,
-    // FileUploaderComponent,
-    // RadioButtonComponent
+    // DatepickerComponent,
+    ToggleComponent,
+    FileUploaderComponent,
+    RadioButtonComponent
   ]
 })
 export class HomeIndexComponent implements OnInit {

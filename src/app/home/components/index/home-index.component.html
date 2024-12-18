@@ -20,29 +20,25 @@
       [values]="languages"
       [required]="true"
     />
-    <app-datepicker
+    <!-- <app-datepicker
       [form]="form"
       label="Fecha"
       formControlName="date"
       [required]="true"
-    />
-    <!--  <app-file-uploader
+    /> -->
+    <app-file-uploader
       [form]="form"
       label="Subir archivo"
       formControlName="fileUploader"
-    ></app-file-uploader>
-    <app-toggle
-      [form]="form"
-      label="Esta Activo"
-      formControlName="toggle"
-    ></app-toggle>
+    />
+    <app-toggle [form]="form" label="Esta Activo" formControlName="toggle" />
     <app-radio-button
       [form]="form"
       label="Genero"
       formControlName="gender"
       [options]="optionsRadioGroup"
       [required]="true"
-    ></app-radio-button> -->
+    />
     <br />
     {{ form.value | json }}
   </form>

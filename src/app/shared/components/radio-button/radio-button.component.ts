@@ -13,8 +13,8 @@ import {
 import { RadioOptionInterface } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-radio-button',
@@ -28,9 +28,10 @@ import { MatRadioModule } from '@angular/material/radio';
     }
   ],
   imports: [
-    MatRadioModule,
-    MatInputModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatRadioButton,
     ReactiveFormsModule,
     CommonModule
   ]
