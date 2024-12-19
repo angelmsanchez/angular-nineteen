@@ -25,7 +25,7 @@ import {
     InputComponent,
     InputNumberComponent,
     SelectComponent,
-    // DatepickerComponent,
+    DatepickerComponent,
     ToggleComponent,
     FileUploaderComponent,
     RadioButtonComponent

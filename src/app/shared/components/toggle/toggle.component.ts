@@ -21,11 +21,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
       multi: true
     }
   ],
-  imports: [
-    MatSlideToggle,
-    ReactiveFormsModule,
-    CommonModule
-  ]
+  imports: [MatSlideToggle, ReactiveFormsModule, CommonModule]
 })
 export class ToggleComponent implements ControlValueAccessor {
   @Input() label = '';
