@@ -23,6 +23,8 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
+    "@ngx-translate/core": "^16.0.4",
+    "@ngx-translate/http-loader": "^16.0.1",
     "dayjs": "^1.11.13",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -32,9 +34,10 @@
     "@angular-devkit/build-angular": "^19.0.0",
     "@angular/cli": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
+    "@angular/localize": "^19.0.0",
     "@eslint/js": "^9.16.0",
     "@types/jasmine": "~5.1.0",
-    "angular-eslint": "19.0.2",
+    "angular-eslint": "^19.0.2",
     "eslint": "^9.16.0",
     "globals": "^15.13.0",
     "jasmine-core": "~5.4.0",
@@ -45,6 +48,6 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "^3.4.2",
     "typescript": "~5.6.2",
-    "typescript-eslint": "8.18.0"
+    "typescript-eslint": "^8.18.0"
   }
 }
