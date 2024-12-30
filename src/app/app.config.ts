@@ -15,9 +15,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 registerLocaleData(localeEs);
 
-const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
+const HttpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
-) => new TranslateHttpLoader(http, './i18n/', '.json');
+) => new TranslateHttpLoader(http, '../i18n/', '.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,8 +33,8 @@ export const appConfig: ApplicationConfig = {
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
-          useFactory: httpLoaderFactory,
-          deps: [ ]
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
         }
       })
     ])
