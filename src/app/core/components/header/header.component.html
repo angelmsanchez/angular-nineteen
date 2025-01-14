@@ -4,4 +4,19 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
+  <div class="spacer"></div>
+  <button
+    class="header-container__button"
+    type="button"
+    (click)="changeLanguage('es')"
+  >
+    {{ 'SHARED.SPANISH' | translate }}
+  </button>
+  <button
+    class="header-container__button"
+    type="button"
+    (click)="changeLanguage('en')"
+  >
+    {{ 'SHARED.ENGLISH' | translate }}
+  </button>
 </mat-toolbar>

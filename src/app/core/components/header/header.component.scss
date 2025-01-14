@@ -3,7 +3,6 @@
 .header-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
   padding: 0 0.313rem;
   border-bottom: 0.063rem solid lightgray;
@@ -11,6 +10,10 @@
 
   @media (min-width: devices.$screen-md) {
     padding: 0 1.875rem;
+  }
+
+  .spacer {
+    margin-left: auto;
   }
 
   span,
