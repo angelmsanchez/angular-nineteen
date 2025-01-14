@@ -1,7 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import dayjs from 'dayjs';
+import { setLanguage } from 'src/app/store/actions';
+import { StoreInterface } from 'src/app/store/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +16,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class HeaderComponent {
   @Output() setOpenMenu = new EventEmitter<void>();
 
-  constructor(private translateService: TranslateService) {}
+  constructor(
+    private translateService: TranslateService,
+    private store: Store<StoreInterface>
+  ) {}
 
   changeLanguage(language: string): void {
-    console.log('changeLanguage', language);
     this.translateService.use(language);
-    // dayjs.locale(language);
+    dayjs.locale(language);
+    this.store.dispatch(setLanguage({ language }));
   }
 }

@@ -4,7 +4,9 @@ import {
   Input,
   forwardRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
   FormControl,
@@ -22,6 +24,10 @@ import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
+import { StoreInterface } from 'src/app/store/interfaces';
+import { select, Store } from '@ngrx/store';
+import { skipWhile, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-datepicker',
@@ -45,10 +51,13 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslateModule
   ]
 })
-export class DatepickerComponent implements ControlValueAccessor, Validator {
+export class DatepickerComponent
+  implements ControlValueAccessor, Validator, OnInit, OnDestroy
+{
   @Input() disabled?: boolean;
   @Input() form: FormGroup = new FormGroup({});
   @Input() formControlName = '';
@@ -64,7 +73,25 @@ export class DatepickerComponent implements ControlValueAccessor, Validator {
   formControl: FormControl = new FormControl();
   formControlTime: FormControl = new FormControl();
 
-  constructor(private dateAdapter: DateAdapter<unknown>) {}
+  private subscription: Subscription = new Subscription();
+
+  constructor(
+    private store: Store<StoreInterface>,
+    private dateAdapter: DateAdapter<unknown>
+  ) {}
+
+  ngOnInit(): void {
+    this.subscription = this.store
+      .pipe(
+        select((store) => store.language),
+        skipWhile((language) => !language)
+      )
+      .subscribe((language) => this.dateAdapter.setLocale(language));
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onChange = (_: dayjs.Dayjs) => {};

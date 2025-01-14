@@ -1,7 +1,8 @@
 {
   "SHARED": {
+    "DATE": "Fecha",
     "ENGLISH": "Ingles",
-    "SPANISH": "Español",
-    "REQUIRED_FIELD": "Campo requerido"
+    "REQUIRED_FIELD": "Campo requerido",
+    "SPANISH": "Español"
   }
 }

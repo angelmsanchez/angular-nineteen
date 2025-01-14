@@ -12,6 +12,8 @@ import localeEs from '@angular/common/locales/es';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { reducers } from './store/reducers';
+import { StoreModule } from '@ngrx/store';
 
 registerLocaleData(localeEs);
 
@@ -37,6 +39,7 @@ export const appConfig: ApplicationConfig = {
           deps: [HttpClient]
         }
       })
-    ])
+    ]),
+    importProvidersFrom([StoreModule.forRoot(reducers)])
   ]
 };

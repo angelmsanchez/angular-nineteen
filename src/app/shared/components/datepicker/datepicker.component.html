@@ -2,8 +2,7 @@
   <mat-form-field
     [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
   >
-    <mat-label>{{ label }}</mat-label>
-    <!-- <mat-label>{{ label | translate }}</mat-label> -->
+    <mat-label>{{ label | translate }}</mat-label>
     <div class="datepicker-container" [ngClass]="{ 'has-time': hasTime }">
       <input
         matInput
@@ -36,8 +35,7 @@
         form?.get(formControlName)?.errors?.['required']
       "
     >
-      {{ 'shared.requiredField' }}
-      <!-- {{ 'shared.requiredField' | translate }} -->
+      {{ 'SHARED.REQUIRED_FIELD' | translate }}
     </div>
   </mat-form-field>
 </section>
