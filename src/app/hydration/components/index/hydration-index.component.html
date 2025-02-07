@@ -1,0 +1,10 @@
+<div role="main">
+  <h1>Hydration Index</h1>
+  <h5>userSelected: {{ userSelected()?.name }}</h5>
+
+  <ul>
+    @for (result of userResource.value()?.results; track result.name) {
+      <li>Name: {{ result.name }} - Height: {{ result.height }}cm</li>
+    }
+  </ul>
+</div>

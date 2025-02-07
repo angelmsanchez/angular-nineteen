@@ -4,6 +4,13 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
+      import('./hydration/components/index/hydration-index.component').then(
+        (m) => m.HydrationIndexComponent
+      )
+  },
+  {
+    path: 'example',
+    loadComponent: () =>
       import('./example/components/index/example-index.component').then(
         (m) => m.ExampleIndexComponent
       )
