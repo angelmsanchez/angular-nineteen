@@ -1,20 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, linkedSignal, resource } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { ChangeDetectorComponent } from '../change-detector/change-detector.component';
 
+interface UserInterface {
+  name: string;
+  height: number;
+}
 interface PeopleInterface {
   count: number;
   next: string;
   previous: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  results: any[];
+  results: UserInterface[];
 }
 
 @Component({
   selector: 'app-hydration-index',
   templateUrl: './hydration-index.component.html',
   styleUrls: ['./hydration-index.component.scss'],
-  imports: [CommonModule, TranslateModule]
+  imports: [CommonModule, TranslateModule, ChangeDetectorComponent]
 })
 export class HydrationIndexComponent {
   userResource = resource({
@@ -36,5 +40,9 @@ export class HydrationIndexComponent {
         console.log('Datos del usuario:', this.userResource.value());
       }
     });
+  }
+
+  selectUser(user: UserInterface) {
+    this.userSelected.set(user);
   }
 }

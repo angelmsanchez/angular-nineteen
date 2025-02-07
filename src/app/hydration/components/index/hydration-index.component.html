@@ -1,10 +1,14 @@
 <div role="main">
+  <app-change-detector [title]="userSelected()?.name || ''" />
   <h1>Hydration Index</h1>
   <h5>userSelected: {{ userSelected()?.name }}</h5>
 
   <ul>
     @for (result of userResource.value()?.results; track result.name) {
-      <li>Name: {{ result.name }} - Height: {{ result.height }}cm</li>
+      <li>
+        Name: {{ result.name }} - Height: {{ result.height }}cm
+        <button (click)="selectUser(result)">Select User</button>
+      </li>
     }
   </ul>
 </div>
