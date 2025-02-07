@@ -1,8 +1,18 @@
 import { Routes } from '@angular/router';
-import { HomeIndexComponent } from './home/components';
-import { ExampleIndexComponent } from './example/components';
 
 export const routes: Routes = [
-  { path: '', component: ExampleIndexComponent },
-  { path: 'home', component: HomeIndexComponent }
+  {
+    path: '',
+    loadComponent: () =>
+      import('./example/components/index/example-index.component').then(
+        (m) => m.ExampleIndexComponent
+      )
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./home/components/index/home-index.component').then(
+        (m) => m.HomeIndexComponent
+      )
+  }
 ];
