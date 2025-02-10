@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, linkedSignal, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   DatepickerComponent,
@@ -33,7 +33,7 @@ import {
 })
 export class HomeIndexComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  languages: SelectOptionInterface[] = [
+  languages = signal<SelectOptionInterface[]>([
     {
       id: '1',
       name: 'Español'
@@ -42,7 +42,7 @@ export class HomeIndexComponent implements OnInit {
       id: '2',
       name: 'Ingles'
     }
-  ];
+  ]);
   optionsRadioGroup: RadioOptionInterface[] = [
     {
       value: 'Masculino',
@@ -53,11 +53,16 @@ export class HomeIndexComponent implements OnInit {
       label: 'Femenino'
     }
   ];
+  languageSelected = linkedSignal(() => this.languages()[0].name);
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
+  }
+
+  changeLanguage(value: SelectOptionInterface): void {
+    this.languageSelected.set(value.name);
   }
 
   private initForm(): void {

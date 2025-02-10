@@ -64,7 +64,7 @@ export class SelectComponent
   @Input() translate?: boolean = false;
   @Input() values: SelectOptionInterface[] = [];
 
-  @Output() selectOption? = new EventEmitter<SelectOptionInterface>();
+  @Output() selectOption = new EventEmitter<SelectOptionInterface>();
 
   formControl: FormControl = new FormControl();
   dataFormat = 'asString';

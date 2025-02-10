@@ -17,8 +17,9 @@
       [form]="form"
       label="Idioma"
       formControlName="language"
-      [values]="languages"
+      [values]="languages()"
       [required]="true"
+      (selectOption)="changeLanguage($event)"
     />
     <app-datepicker
       [form]="form"
@@ -41,5 +42,6 @@
     />
     <br />
     {{ form.value | json }}
+    <h5>{{ languageSelected() }}</h5>
   </form>
 </section>
