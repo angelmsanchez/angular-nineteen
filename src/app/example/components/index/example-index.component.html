@@ -20,11 +20,18 @@
   {{ currency | number: '3.2-3' }}
   <br />
   <br />
+  volume:{{ volume() }}
+  <br />
+  <br />
   INITIAL:{{ initialCount }}
   <input type="number" [(ngModel)]="initialCount" />
   <br />
   <br />
-  <app-change-detector [(count)]="initialCount" [user]="user()">
+  <app-change-detector
+    [(count)]="initialCount"
+    [user]="user()"
+    [volume]="volume()"
+  >
     <p>This is ng content paragraph</p>
   </app-change-detector>
   <button (click)="changeName()">changeName</button>

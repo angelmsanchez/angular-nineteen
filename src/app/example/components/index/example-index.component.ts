@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import dayjs from 'dayjs';
 import { DateFormatPipe } from 'src/app/shared/pipes';
@@ -22,8 +22,9 @@ export class ExampleIndexComponent {
   today = new Date();
   todayDay = dayjs();
   currency = 5001.5;
-  initialCount = 18;
+  protected initialCount = 18;
   user = signal({ name: 'A' });
+  volume = signal(0);
 
   changeName() {
     this.user.set({ ...this.user(), name: this.user().name + ' A' });
