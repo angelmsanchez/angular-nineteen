@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { CommonModule } from '@angular/common';
-import { Component, Input, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, OnInit, input } from '@angular/core';
 import {
   FormControl,
   ControlValueAccessor,
@@ -38,20 +38,22 @@ import { MatInputModule } from '@angular/material/input';
   ]
 })
 export class InputComponent implements ControlValueAccessor, Validator, OnInit {
-  @Input() disabled?: boolean;
-  @Input() form: FormGroup = new FormGroup({});
-  @Input() formControlName = '';
-  @Input() initialValue?: string;
-  @Input() label = '';
-  @Input() required = false;
-  @Input() textarea?: boolean;
-  @Input() textareaRows?: number;
+  readonly disabled = input<boolean>();
+  readonly form = input<FormGroup>(new FormGroup({}));
+  readonly formControlName = input('');
+  readonly initialValue = input<string>();
+  readonly label = input('');
+  readonly required = input(false);
+  readonly textarea = input<boolean>();
+  readonly textareaRows = input<number>();
 
   formControl: FormControl = new FormControl();
 
   ngOnInit(): void {
-    if (this.initialValue) this.writeValue(this.initialValue);
-    if (this.disabled) this.setDisabledState(this.disabled);
+    const initialValue = this.initialValue();
+    if (initialValue) this.writeValue(initialValue);
+    const disabled = this.disabled();
+    if (disabled) this.setDisabledState(disabled);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -75,7 +77,7 @@ export class InputComponent implements ControlValueAccessor, Validator, OnInit {
   }
 
   validate(control: AbstractControl): Record<string, boolean> | null {
-    if (!this.formControl.untouched && !control.value && this.required) {
+    if (!this.formControl.untouched && !control.value && this.required()) {
       return { required: true };
     }
     return null;

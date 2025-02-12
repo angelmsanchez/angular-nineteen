@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {
   Component,
-  Input,
   forwardRef,
-  Output,
-  EventEmitter,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  input,
+  output
 } from '@angular/core';
 import {
   FormControl,
@@ -58,17 +57,17 @@ import { skipWhile, Subscription } from 'rxjs';
 export class DatepickerComponent
   implements ControlValueAccessor, Validator, OnInit, OnDestroy
 {
-  @Input() disabled?: boolean;
-  @Input() form: FormGroup = new FormGroup({});
-  @Input() formControlName = '';
-  @Input() hasTime?: boolean;
-  @Input() initialValue?: dayjs.Dayjs;
-  @Input() label = '';
-  @Input() maxDate?: dayjs.Dayjs;
-  @Input() minDate?: dayjs.Dayjs;
-  @Input() required = false;
+  readonly disabled = input<boolean>();
+  readonly form = input<FormGroup>(new FormGroup({}));
+  readonly formControlName = input('');
+  readonly hasTime = input<boolean>();
+  readonly initialValue = input<dayjs.Dayjs>();
+  readonly label = input('');
+  readonly maxDate = input<dayjs.Dayjs>();
+  readonly minDate = input<dayjs.Dayjs>();
+  readonly required = input(false);
 
-  @Output() selectDate? = new EventEmitter<dayjs.Dayjs>();
+  readonly selectDate = output<dayjs.Dayjs>();
 
   formControl: FormControl = new FormControl();
   formControlTime: FormControl = new FormControl();
@@ -120,7 +119,7 @@ export class DatepickerComponent
   }
 
   validate(control: AbstractControl): Record<string, boolean> | null {
-    if (!this.formControl.untouched && !control.value && this.required) {
+    if (!this.formControl.untouched && !control.value && this.required()) {
       return { required: true };
     }
     return null;

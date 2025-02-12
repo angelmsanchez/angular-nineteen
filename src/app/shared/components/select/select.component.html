@@ -1,15 +1,15 @@
 <section class="custom-input select-input">
   <mat-form-field
-    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+    [ngClass]="{ 'custom-input__error': form().get(formControlName())?.errors }"
   >
-    <mat-label>{{ label }}</mat-label>
+    <mat-label>{{ label() }}</mat-label>
     <!-- <mat-label>{{ label | translate }}</mat-label> -->
     <mat-select
-      [multiple]="multiple"
+      [multiple]="multiple()"
       [formControl]="formControl"
       [compareWith]="compareWithFn"
       (selectionChange)="onInput()"
-      [required]="required"
+      [required]="required()"
     >
       <mat-select-trigger>
         <div class="unique-value">
@@ -21,14 +21,14 @@
       </mat-select-trigger>
 
       <mat-option
-        *ngFor="let value of values; trackBy: trackByFunction.bind(this)"
+        *ngFor="let value of values(); trackBy: trackByFunction.bind(this)"
         [value]="value"
       >
         <div [ngSwitch]="dataFormat">
           <span *ngSwitchCase="'asString'">
-            <span *ngIf="translate">{{ value.name }}</span>
+            <span *ngIf="translate()">{{ value.name }}</span>
             <!-- <span *ngIf="translate">{{ value.name | translate }}</span> -->
-            <span *ngIf="!translate">{{ value.name }}</span>
+            <span *ngIf="!translate()">{{ value.name }}</span>
           </span>
         </div>
       </mat-option>
@@ -37,7 +37,7 @@
       class="mat-error"
       *ngIf="
         !formControl.untouched &&
-        form?.get(formControlName)?.errors?.['required']
+        form()?.get(formControlName())?.errors?.['required']
       "
     >
       {{ 'shared.requiredField' }}

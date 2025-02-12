@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, input } from '@angular/core';
 import {
   trigger,
   state,
@@ -62,19 +62,20 @@ interface FileInterface {
   ]
 })
 export class FileUploaderComponent implements OnInit {
-  @Input() accept = 'text/*, .jpg, .jpeg, .png, .pdf';
-  @Input() disabled?: boolean;
-  @Input() form: FormGroup = new FormGroup({});
-  @Input() formControlName = '';
-  @Input() initialValue?: string;
-  @Input() label = 'shared.attachmentsFile';
-  @Input() required = false;
+  readonly accept = input('text/*, .jpg, .jpeg, .png, .pdf');
+  readonly disabled = input<boolean>();
+  readonly form = input<FormGroup>(new FormGroup({}));
+  readonly formControlName = input('');
+  readonly initialValue = input<string>();
+  readonly label = input('shared.attachmentsFile');
+  readonly required = input(false);
 
   formControl: FormControl = new FormControl();
   files: FileInterface[] = [];
 
   ngOnInit(): void {
-    if (this.initialValue) this.writeValue(this.initialValue);
+    const initialValue = this.initialValue();
+    if (initialValue) this.writeValue(initialValue);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -98,7 +99,7 @@ export class FileUploaderComponent implements OnInit {
   }
 
   validate(control: AbstractControl): Record<string, boolean> | null {
-    if (!this.formControl.untouched && !control.value && this.required) {
+    if (!this.formControl.untouched && !control.value && this.required()) {
       return { required: true };
     }
     return null;

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { CommonModule } from '@angular/common';
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, forwardRef, input } from '@angular/core';
 import {
   FormControl,
   ControlValueAccessor,
@@ -24,8 +24,8 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
   imports: [MatSlideToggle, ReactiveFormsModule, CommonModule]
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Input() label = '';
-  @Input() form: FormGroup = new FormGroup({});
+  readonly label = input('');
+  readonly form = input<FormGroup>(new FormGroup({}));
 
   formControl: FormControl = new FormControl();
 

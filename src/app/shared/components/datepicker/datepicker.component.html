@@ -1,17 +1,17 @@
 <section class="custom-input datepicker">
   <mat-form-field
-    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+    [ngClass]="{ 'custom-input__error': form().get(formControlName())?.errors }"
   >
-    <mat-label>{{ label | translate }}</mat-label>
-    <div class="datepicker-container" [ngClass]="{ 'has-time': hasTime }">
+    <mat-label>{{ label() | translate }}</mat-label>
+    <div class="datepicker-container" [ngClass]="{ 'has-time': hasTime() }">
       <input
         matInput
         [formControl]="formControl"
         [matDatepicker]="datepicker"
         (dateChange)="onInput()"
-        [required]="required"
-        [min]="minDate"
-        [max]="maxDate"
+        [required]="required()"
+        [min]="minDate()"
+        [max]="maxDate()"
       />
       <mat-datepicker-toggle
         matSuffix
@@ -19,20 +19,20 @@
       ></mat-datepicker-toggle>
       <mat-datepicker #datepicker></mat-datepicker>
     </div>
-    <div *ngIf="hasTime">
+    <div *ngIf="hasTime()">
       <input
         matInput
         [formControl]="formControlTime"
         (input)="onInput()"
         type="time"
-        [required]="required"
+        [required]="required()"
       />
     </div>
     <div
       class="mat-error"
       *ngIf="
         !formControl.untouched &&
-        form?.get(formControlName)?.errors?.['required']
+        form()?.get(formControlName())?.errors?.['required']
       "
     >
       {{ 'SHARED.REQUIRED_FIELD' | translate }}

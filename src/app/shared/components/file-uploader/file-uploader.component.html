@@ -1,18 +1,18 @@
 <section class="custom-input">
   <mat-form-field
-    [ngClass]="{ 'custom-input__error': form.get(formControlName)?.errors }"
+    [ngClass]="{ 'custom-input__error': form().get(formControlName())?.errors }"
     (click)="upload()"
   >
-    <mat-label>{{ label }}</mat-label>
+    <mat-label>{{ label() }}</mat-label>
     <!-- <mat-label>{{ label | translate }}</mat-label> -->
     <input
       type="file"
       id="fileUpload"
       name="fileUpload"
       multiple="multiple"
-      accept="{{ accept }}"
+      accept="{{ accept() }}"
       [formControl]="formControl"
-      [required]="required"
+      [required]="required()"
       style="display: none"
     />
     <mat-icon>file_upload</mat-icon>
@@ -21,7 +21,7 @@
       class="mat-error"
       *ngIf="
         !formControl.untouched &&
-        form?.get(formControlName)?.errors?.['required']
+        form()?.get(formControlName())?.errors?.['required']
       "
     >
       {{ 'shared.requiredField' }}

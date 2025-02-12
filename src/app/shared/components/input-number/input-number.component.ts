@@ -5,8 +5,8 @@ import {
   Input,
   forwardRef,
   OnInit,
-  Output,
-  EventEmitter
+  input,
+  output
 } from '@angular/core';
 import {
   FormControl,
@@ -47,23 +47,23 @@ import { MatInputModule } from '@angular/material/input';
 export class InputNumberComponent
   implements ControlValueAccessor, Validator, OnInit
 {
-  @Input() currency?: string;
-  @Input() form: FormGroup = new FormGroup({});
-  @Input() formControlName = '';
-  @Input() initialValue?: number;
-  @Input() label?: string;
-  @Input() max: number | null = null;
-  @Input() min = 0;
-  @Input() percentage?: boolean = false;
-  @Input() required = false;
+  readonly currency = input<string | undefined>();
+  readonly form = input<FormGroup>(new FormGroup({}));
+  readonly formControlName = input('');
+  readonly initialValue = input<number>();
+  readonly label = input<string | undefined>();
+  readonly max = input<number | null>(null);
+  readonly min = input(0);
+  readonly percentage = input<boolean | undefined>(false);
+  readonly required = input(false);
 
-  @Output() selectValue? = new EventEmitter<number>();
+  readonly selectValue = output<number>();
 
   formControl: FormControl = new FormControl();
 
   ngOnInit(): void {
-    if (this.initialValue) this.writeValue(this.initialValue);
-    if (this.percentage && !this.max) this.max = 100;
+    const initialValue = this.initialValue();
+    if (initialValue) this.writeValue(initialValue);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -94,10 +94,10 @@ export class InputNumberComponent
   }
 
   validate(control: AbstractControl): Record<string, boolean> | null {
-    if (!this.formControl.untouched && !control.value && this.required) {
+    if (!this.formControl.untouched && !control.value && this.required()) {
       return { required: true };
     }
-    if (control.value && this.min > control.value) {
+    if (control.value && this.min() > control.value) {
       return { min: true };
     }
     if (control.value && this.max && this.max < control.value) {

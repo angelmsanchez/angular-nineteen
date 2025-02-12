@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
@@ -10,9 +10,9 @@ import { HeaderComponent } from '../header/header.component';
   imports: [RouterModule, RouterOutlet, MatSidenavModule, HeaderComponent]
 })
 export class LayoutComponent {
-  @ViewChild('sidenav') sidenav: MatSidenav = new MatSidenav();
+  readonly sidenav = viewChild<MatSidenav>('sidenav');
 
   setOpenMenu(): void {
-    this.sidenav.toggle();
+    this.sidenav()?.toggle();
   }
 }

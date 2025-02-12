@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Component, Input, forwardRef, OnInit } from '@angular/core';
+import { Component, Input, forwardRef, OnInit, input } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -39,14 +39,14 @@ import { MatInputModule } from '@angular/material/input';
 export class RadioButtonComponent
   implements OnInit, ControlValueAccessor, Validator
 {
-  @Input() disabled = false;
-  @Input() form: FormGroup = new FormGroup({});
-  @Input() formControlName = '';
-  @Input() initialValue?: string;
-  @Input() inline?: boolean = false;
-  @Input() label = '';
-  @Input() options: RadioOptionInterface[] = [];
-  @Input() required?: boolean;
+  readonly disabled = input(false);
+  readonly form = input<FormGroup>(new FormGroup({}));
+  readonly formControlName = input('');
+  readonly initialValue = input<string>();
+  readonly inline = input<boolean | undefined>(false);
+  readonly label = input('');
+  readonly options = input<RadioOptionInterface[]>([]);
+  readonly required = input<boolean>();
 
   formControl: FormControl = new FormControl();
 
@@ -55,8 +55,10 @@ export class RadioButtonComponent
   onTouch = () => {};
 
   ngOnInit(): void {
-    if (this.initialValue) this.writeValue(this.initialValue);
-    if (this.disabled) this.setDisabledState(this.disabled);
+    const initialValue = this.initialValue();
+    if (initialValue) this.writeValue(initialValue);
+    const disabled = this.disabled();
+    if (disabled) this.setDisabledState(disabled);
   }
 
   onInput(): void {
@@ -81,7 +83,7 @@ export class RadioButtonComponent
   }
 
   validate(control: AbstractControl): Record<string, boolean> | null {
-    if (!this.formControl.untouched && !control.value && this.required) {
+    if (!this.formControl.untouched && !control.value && this.required()) {
       return { required: true };
     }
     return null;

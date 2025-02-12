@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {
   Component,
-  Input,
   forwardRef,
-  Output,
-  EventEmitter,
-  OnInit
+  OnInit,
+  input,
+  output
 } from '@angular/core';
 import {
   FormControl,
@@ -54,24 +53,26 @@ import { MatSelectModule, MatSelectTrigger } from '@angular/material/select';
 export class SelectComponent
   implements OnInit, ControlValueAccessor, Validator
 {
-  @Input() disabled?: boolean;
-  @Input() form: FormGroup = new FormGroup({});
-  @Input() formControlName = '';
-  @Input() initialValue?: string;
-  @Input() label = '';
-  @Input() multiple?: boolean = false;
-  @Input() required = false;
-  @Input() translate?: boolean = false;
-  @Input() values: SelectOptionInterface[] = [];
+  readonly disabled = input<boolean>();
+  readonly form = input<FormGroup>(new FormGroup({}));
+  readonly formControlName = input('');
+  readonly initialValue = input<string>();
+  readonly label = input('');
+  readonly multiple = input<boolean | undefined>(false);
+  readonly required = input(false);
+  readonly translate = input<boolean | undefined>(false);
+  readonly values = input<SelectOptionInterface[]>([]);
 
-  @Output() selectOption = new EventEmitter<SelectOptionInterface>();
+  readonly selectOption = output<SelectOptionInterface>();
 
   formControl: FormControl = new FormControl();
   dataFormat = 'asString';
 
   ngOnInit(): void {
-    if (this.initialValue) this.writeValue(this.initialValue);
-    if (this.disabled) this.setDisabledState(this.disabled);
+    const initialValue = this.initialValue();
+    if (initialValue) this.writeValue(initialValue);
+    const disabled = this.disabled();
+    if (disabled) this.setDisabledState(disabled);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -107,7 +108,7 @@ export class SelectComponent
   }
 
   validate(control: AbstractControl): Record<string, boolean> | null {
-    if (!this.formControl.untouched && !control.value && this.required) {
+    if (!this.formControl.untouched && !control.value && this.required()) {
       return { required: true };
     }
     return null;
@@ -115,7 +116,7 @@ export class SelectComponent
 
   removeSelected(value: SelectOptionInterface): void {
     this.formControl.setValue(
-      this.multiple
+      this.multiple()
         ? this.formControl.value.filter(
             (data: SelectOptionInterface) => data.id !== value.id
           )

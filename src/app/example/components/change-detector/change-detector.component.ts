@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output
+  input,
+  output
 } from '@angular/core';
+
+interface UserInterface {
+  name: string;
+}
 
 @Component({
   selector: 'app-change-detector',
@@ -15,13 +18,11 @@ import {
   imports: [CommonModule]
 })
 export class ChangeDetectorComponent {
-  @Input() count = 0;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  @Input() user: any = undefined;
-  @Output() countChange = new EventEmitter<number>();
+  readonly count = input(0);
+  readonly user = input<UserInterface>();
+  readonly countChange = output<number>();
 
   updateCount(amount: number): void {
-    this.count += amount;
-    this.countChange.emit(this.count);
+    this.countChange.emit(this.count() + amount);
   }
 }

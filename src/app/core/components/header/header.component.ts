@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { StoreInterface } from 'src/app/store/interfaces';
   imports: [MatToolbarModule, MatIconModule, TranslateModule]
 })
 export class HeaderComponent {
-  @Output() setOpenMenu = new EventEmitter<void>();
+  readonly setOpenMenu = output<void>();
 
   constructor(
     private translateService: TranslateService,

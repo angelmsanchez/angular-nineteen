@@ -1,19 +1,19 @@
 <section class="custom-input">
   <div
     [ngClass]="{
-      'show-inline': inline,
-      'custom-input__error': form.get(formControlName)?.errors
+      'show-inline': inline(),
+      'custom-input__error': form().get(formControlName())?.errors
     }"
   >
-    <mat-label *ngIf="label"
-      >{{ label }}&nbsp;<span *ngIf="required">*</span></mat-label
+    <mat-label *ngIf="label()"
+      >{{ label() }}&nbsp;<span *ngIf="required()">*</span></mat-label
     >
     <!-- <label *ngIf="label"
     >{{ label | translate }}&nbsp;<span *ngIf="required">*</span></label
   > -->
     <mat-radio-group [formControl]="formControl" (change)="onInput()">
       <mat-radio-button
-        *ngFor="let option of options"
+        *ngFor="let option of options()"
         color="primary"
         [value]="option.value"
       >
@@ -25,7 +25,7 @@
       class="mat-error"
       *ngIf="
         !formControl.untouched &&
-        form.get(formControlName)?.errors?.['required']
+        form().get(formControlName())?.errors?.['required']
       "
     >
       {{ 'shared.requiredField' }}
