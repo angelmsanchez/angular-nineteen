@@ -1,18 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, linkedSignal, resource } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  linkedSignal,
+  resource
+} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDetectorComponent } from '../change-detector/change-detector.component';
-
-interface UserInterface {
-  name: string;
-  height: number;
-}
-interface PeopleInterface {
-  count: number;
-  next: string;
-  previous: number;
-  results: UserInterface[];
-}
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { UserService } from '../../services';
+import { PeopleInterface, UserInterface } from '../../interfaces';
 
 @Component({
   selector: 'app-hydration-index',
@@ -21,6 +19,7 @@ interface PeopleInterface {
   imports: [CommonModule, TranslateModule, ChangeDetectorComponent]
 })
 export class HydrationIndexComponent {
+  #userService = inject(UserService);
   userResource = resource({
     loader: () => {
       return fetch('https://swapi.dev/api/people/').then(
@@ -28,7 +27,11 @@ export class HydrationIndexComponent {
       );
     }
   });
-  userSelected = linkedSignal(() => this.userResource.value()?.results[0]);
+  users = injectQuery(() => ({
+    queryKey: ['users'],
+    queryFn: () => this.#userService.getUsers()
+  }));
+  userSelected = linkedSignal(() => this.users.data()?.results[0]);
 
   constructor() {
     effect(() => {
@@ -39,6 +42,9 @@ export class HydrationIndexComponent {
       } else {
         console.log('Datos del usuario:', this.userResource.value());
       }
+    });
+    effect(() => {
+      console.log('Cargando Users Tanstack:', this.users.data());
     });
   }
 

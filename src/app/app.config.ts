@@ -9,16 +9,29 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient
+} from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { reducers } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { InterceptorService } from './core/services/';
-// import { provideClientHydration, withIncrementalHydration } from '@angular/platform-browser';
+import {
+  provideTanStackQuery,
+  QueryClient
+} from '@tanstack/angular-query-experimental';
 
 registerLocaleData(localeEs);
-
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5 // 5 minute
+    }
+  }
+});
 const HttpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
 ) => new TranslateHttpLoader(http, '../i18n/', '.json');
@@ -43,7 +56,7 @@ export const appConfig: ApplicationConfig = {
       })
     ]),
     importProvidersFrom([StoreModule.forRoot(reducers)]),
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
-    // provideClientHydration(withIncrementalHydration())
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    provideTanStackQuery(queryClient)
   ]
 };

@@ -1,8 +1,8 @@
 <div role="main">
-  <app-change-detector [title]="userSelected()?.name || ''" />
-  <h1>Hydration Index</h1>
   <h5>userSelected: {{ userSelected()?.name }}</h5>
-
+  <br />
+  <br />
+  <h1>Resource api:</h1>
   <ul>
     @for (result of userResource.value()?.results; track result.name) {
       <li>
@@ -11,4 +11,19 @@
       </li>
     }
   </ul>
+  <br />
+  <br />
+  <h1>Tanstack Index</h1>
+  <ul>
+    @for (user of users.data()?.results; track user.name) {
+      <li>
+        Name: {{ user.name }} - Height: {{ user.height }}cm
+        <button (click)="selectUser(user)">Select User</button>
+      </li>
+    }
+  </ul>
+  <br />
+  <br />
+  <h1>Child Component</h1>
+  <app-change-detector [title]="userSelected()?.name || ''" />
 </div>

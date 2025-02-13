@@ -10,4 +10,12 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class ChangeDetectorComponent {
   readonly title = input('');
+
+  getUsers() {}
+
+  injectQuery() {
+    // this.userService.getUsers().subscribe((users) => {
+    //   console.log(users);
+    // });
+  }
 }
