@@ -2,7 +2,7 @@
   <h5>userSelected: {{ userSelected()?.name }}</h5>
   <br />
   <br />
-  <h1>Resource api:</h1>
+  <!-- <h1>Resource api:</h1>
   <ul>
     @for (result of userResource.value()?.results; track result.name) {
       <li>
@@ -12,8 +12,11 @@
     }
   </ul>
   <br />
-  <br />
+  <br /> -->
   <h1>Tanstack Index</h1>
+  @if (users.isLoading()) {
+    <div>Loading...</div>
+  }
   <ul>
     @for (user of users.data()?.results; track user.name) {
       <li>

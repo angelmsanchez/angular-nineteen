@@ -9,13 +9,10 @@ const url = 'https://swapi.dev/api/people/';
 export class UserService {
   #http = inject(HttpClient);
 
-  // getUsers(): Promise<any[]> {
-  //   return lastValueFrom(fetch<any[]>(url));
-  // }
-
   getUsers(): Promise<PeopleInterface> {
     return lastValueFrom(this.#http.get<PeopleInterface>(url));
   }
 
-  createUser = (body: PeopleInterface) => this.#http.post<PeopleInterface>(url, body);
+  createUser = (body: PeopleInterface) =>
+    this.#http.post<PeopleInterface>(url, body);
 }

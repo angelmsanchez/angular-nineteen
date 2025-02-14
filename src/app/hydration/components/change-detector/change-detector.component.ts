@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input
+} from '@angular/core';
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { HydrationIndexComponent } from '../index/hydration-index.component';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-change-detector',
@@ -9,13 +17,15 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   imports: [CommonModule]
 })
 export class ChangeDetectorComponent {
+  #userService = inject(UserService);
   readonly title = input('');
 
-  getUsers() {}
+  users = injectQuery(() => ({
+    queryKey: ['users'],
+    queryFn: () => this.#userService.getUsers()
+  }));
 
-  injectQuery() {
-    // this.userService.getUsers().subscribe((users) => {
-    //   console.log(users);
-    // });
+  getUsers() {
+    this.users.refetch();
   }
 }
