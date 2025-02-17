@@ -12,7 +12,8 @@ import localeEs from '@angular/common/locales/es';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
-  provideHttpClient
+  provideHttpClient,
+  withFetch
 } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -23,6 +24,10 @@ import {
   provideTanStackQuery,
   QueryClient
 } from '@tanstack/angular-query-experimental';
+import {
+  provideClientHydration,
+  withEventReplay
+} from '@angular/platform-browser';
 
 registerLocaleData(localeEs);
 const queryClient = new QueryClient({
@@ -38,7 +43,7 @@ const HttpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
@@ -57,6 +62,7 @@ export const appConfig: ApplicationConfig = {
     ]),
     importProvidersFrom([StoreModule.forRoot(reducers)]),
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
-    provideTanStackQuery(queryClient)
+    provideTanStackQuery(queryClient),
+    provideClientHydration(withEventReplay())
   ]
 };

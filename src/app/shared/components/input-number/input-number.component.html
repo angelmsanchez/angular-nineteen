@@ -32,7 +32,10 @@
       {{ 'shared.minValue' }}
       <!-- {{ 'shared.minValue' | translate: { value: min } }} -->
     </div>
-    <div class="mat-error" *ngIf="form()?.get(formControlName())?.errors?.['max']">
+    <div
+      class="mat-error"
+      *ngIf="form()?.get(formControlName())?.errors?.['max']"
+    >
       {{ 'shared.maxValue' }}
       <!-- {{ 'shared.maxValue' | translate: { value: max } }} -->
     </div>

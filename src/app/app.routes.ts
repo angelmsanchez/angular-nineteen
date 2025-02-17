@@ -21,5 +21,12 @@ export const routes: Routes = [
       import('./home/components/index/home-index.component').then(
         (m) => m.HomeIndexComponent
       )
+  },
+  {
+    path: 'users',
+    loadComponent: () =>
+      import('./users/components/index/users-index.component').then(
+        (m) => m.UsersIndexComponent
+      )
   }
 ];

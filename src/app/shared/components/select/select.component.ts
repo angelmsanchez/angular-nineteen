@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  Component,
-  forwardRef,
-  OnInit,
-  input,
-  output
-} from '@angular/core';
+import { Component, forwardRef, OnInit, input, output } from '@angular/core';
 import {
   FormControl,
   ControlValueAccessor,
