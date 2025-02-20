@@ -6,7 +6,6 @@ import {
   input
 } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { HydrationIndexComponent } from '../index/hydration-index.component';
 import { UserService } from '../../services';
 
 @Component({

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Component, Input, forwardRef, OnInit, input } from '@angular/core';
+import { Component, forwardRef, OnInit, input } from '@angular/core';
 import {
   FormGroup,
   FormControl,

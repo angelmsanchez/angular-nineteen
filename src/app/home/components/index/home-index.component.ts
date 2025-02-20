@@ -14,6 +14,7 @@ import {
   RadioOptionInterface,
   SelectOptionInterface
 } from 'src/app/shared/interfaces';
+import { ChangeDetectorComponent } from '../change-detector/change-detector.component';
 
 @Component({
   selector: 'app-home-index',
@@ -28,7 +29,8 @@ import {
     DatepickerComponent,
     ToggleComponent,
     FileUploaderComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    ChangeDetectorComponent
   ]
 })
 export class HomeIndexComponent implements OnInit {

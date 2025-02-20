@@ -1,3 +1,19 @@
-<div role="main">
+<div role="main" class="container-global">
   <h1>Hydration Index</h1>
+  <!-- El panel de filtros se hidrata cuando aparece en pantalla -->
+  @defer (hydrate on viewport) {
+    <!-- <app-filtros /> -->
+    <h6>Hydration viewport</h6>
+  }
+
+  <!-- La lista se hidrata inmediatamente -->
+  <!-- <app-lista-productos /> -->
+  <h6>Hydration normal</h6>
+
+  <!-- El carrito se hidrata cuando el usuario interactúa -->
+  @defer (hydrate on interaction) {
+    <!-- <app-carrito /> -->
+    <h6>Hydration interaction</h6>
+    <app-change-detector title="Hydration interaction" />
+  }
 </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, signal } from '@angular/core';
+import { Component, signal, ViewEncapsulation } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import dayjs from 'dayjs';
 import { DateFormatPipe } from 'src/app/shared/pipes';
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-example-index',
   templateUrl: './example-index.component.html',
   styleUrls: ['./example-index.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom,
   imports: [
     CommonModule,
     TranslateModule,
