@@ -1,5 +1,9 @@
 <div role="main" class="container-global">
   <h1>Hydration Index</h1>
+  <app-accordion>
+    <app-collapse />
+    <app-collapse />
+  </app-accordion>
   <!-- El panel de filtros se hidrata cuando aparece en pantalla -->
   @defer (hydrate on viewport) {
     <!-- <app-filtros /> -->

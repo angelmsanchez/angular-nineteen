@@ -1,3 +1,5 @@
+export * from './accordion/accordion.component';
+export * from './collapse/collapse.component';
 export * from './datepicker/datepicker.component';
 export * from './file-uploader/file-uploader.component';
 export * from './input-number/input-number.component';
