@@ -1,5 +1,8 @@
-import { Component, input } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { Component, viewChild } from '@angular/core';
+import {
+  MatExpansionModule,
+  MatExpansionPanel
+} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-collapse',
@@ -8,5 +11,26 @@ import { MatExpansionModule } from '@angular/material/expansion';
   imports: [MatExpansionModule]
 })
 export class CollapseComponent {
-    // children = input<>();
+  expansionPanel = viewChild.required<MatExpansionPanel>('expansionPanel');
+  // handleOpen = output();
+  // handleClose = output();
+  // expanded = model(true);
+
+  // close(): void {
+  //   this.expanded.set(false);
+  // }
+
+  // open(): void {
+  //   this.expanded.set(true);
+  // }
+
+  // handleOpened(): void {
+  //   this.open();
+  //   this.handleOpen.emit();
+  // }
+
+  // handleClosed(): void {
+  //   this.close();
+  //   this.handleClose.emit();
+  // }
 }

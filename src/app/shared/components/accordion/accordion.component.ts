@@ -8,5 +8,5 @@ import { MatExpansionModule } from '@angular/material/expansion';
   imports: [MatExpansionModule]
 })
 export class AccordionComponent {
-    // children = input<>();
+  // children = input<>();
 }

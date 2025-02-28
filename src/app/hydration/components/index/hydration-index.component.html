@@ -1,23 +1,46 @@
 <div role="main" class="container-global">
   <h1>Hydration Index</h1>
-  <app-accordion>
-    <app-collapse />
-    <app-collapse />
-  </app-accordion>
+  <app-book>
+    <!-- <app-collapse
+      #contentChildren
+      [expanded]="expanded()"
+      (handleClose)="expanded.set(false)"
+      (handleOpen)="expanded.set(true)"
+    />
+    <app-collapse
+      #contentChildren
+      [expanded]="!expanded()"
+      (handleClose)="expanded.set(true)"
+      (handleOpen)="expanded.set(false)"
+    />
+    <app-collapse
+      #contentChildren
+      [expanded]="!expanded()"
+      (handleClose)="expanded.set(true)"
+      (handleOpen)="expanded.set(false)"
+    /> -->
+    <app-collapse #contentChildren />
+    <app-collapse #contentChildren />
+    <app-collapse #contentChildren />
+  </app-book>
+
+  <br />
+  <br />
+
   <!-- El panel de filtros se hidrata cuando aparece en pantalla -->
   @defer (hydrate on viewport) {
     <!-- <app-filtros /> -->
-    <h6>Hydration viewport</h6>
+    <p>Hydration viewport</p>
   }
 
   <!-- La lista se hidrata inmediatamente -->
   <!-- <app-lista-productos /> -->
-  <h6>Hydration normal</h6>
+  <p>Hydration normal</p>
 
   <!-- El carrito se hidrata cuando el usuario interactúa -->
   @defer (hydrate on interaction) {
     <!-- <app-carrito /> -->
-    <h6>Hydration interaction</h6>
+    <p>Hydration interaction</p>
     <app-change-detector title="Hydration interaction" />
   }
 </div>
