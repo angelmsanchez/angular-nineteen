@@ -1,4 +1,4 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, output, viewChild } from '@angular/core';
 import {
   MatExpansionModule,
   MatExpansionPanel
@@ -12,25 +12,14 @@ import {
 })
 export class CollapseComponent {
   expansionPanel = viewChild.required<MatExpansionPanel>('expansionPanel');
-  // handleOpen = output();
-  // handleClose = output();
-  // expanded = model(true);
+  handleOpen = output();
+  handleClose = output();
 
-  // close(): void {
-  //   this.expanded.set(false);
-  // }
+  handleOpened(): void {
+    this.handleOpen.emit();
+  }
 
-  // open(): void {
-  //   this.expanded.set(true);
-  // }
-
-  // handleOpened(): void {
-  //   this.open();
-  //   this.handleOpen.emit();
-  // }
-
-  // handleClosed(): void {
-  //   this.close();
-  //   this.handleClose.emit();
-  // }
+  handleClosed(): void {
+    this.handleClose.emit();
+  }
 }

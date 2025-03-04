@@ -1,27 +1,9 @@
 <div role="main" class="container-global">
   <h1>Hydration Index</h1>
-  <app-book>
-    <!-- <app-collapse
-      #contentChildren
-      [expanded]="expanded()"
-      (handleClose)="expanded.set(false)"
-      (handleOpen)="expanded.set(true)"
-    />
-    <app-collapse
-      #contentChildren
-      [expanded]="!expanded()"
-      (handleClose)="expanded.set(true)"
-      (handleOpen)="expanded.set(false)"
-    />
-    <app-collapse
-      #contentChildren
-      [expanded]="!expanded()"
-      (handleClose)="expanded.set(true)"
-      (handleOpen)="expanded.set(false)"
-    /> -->
-    <app-collapse #contentChildren />
-    <app-collapse #contentChildren />
-    <app-collapse #contentChildren />
+  <app-book [indexOpen]="indexOpen()">
+    <app-collapse #contentChildren (handleOpen)="handleOpened(0)" />
+    <app-collapse #contentChildren (handleOpen)="handleOpened(1)" />
+    <app-collapse #contentChildren (handleOpen)="handleOpened(2)" />
   </app-book>
 
   <br />

@@ -10,6 +10,7 @@
     "test": "ng test",
     "prettier": "prettier --write src/",
     "lint": "ng lint",
+    "lint:prettier": "npm run lint && npm run prettier",
     "serve:ssr:angular-nineteen": "node dist/angular-nineteen/server/server.mjs"
   },
   "private": true,
